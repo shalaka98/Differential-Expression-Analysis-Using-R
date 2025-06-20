@@ -60,10 +60,6 @@ write.csv(down_genes, "DE_significantly_down_genes.csv", row.names = FALSE)
 
 
 
-# Print the results
-filtered_pvalues_up
-filtered_log2fc_up
-
 # Subset for significant genes with p-value < 0.05 AND log2 fold change < -1
 significant_genes_down <- (padj < 0.05) & (log2_fold_change < -1)
 
