@@ -10,8 +10,9 @@ library(tidyverse)
 ```{r}
 gene_data <- read.csv('https://raw.githubusercontent.com/HackBio-Internship/public_datasets/main/Cancer2024/glioblastoma.csv', row.names=1)
 mat <- as.matrix(gene_data)
-#log_data_matrix <- log2(mat+1) #log transformation of matrix as data range is too broad
-#head(log_data_matrix)
+
+log_data_matrix <- log2(mat+1) #log transformation of matrix as data range is too broad
+head(log_data_matrix)
 ```
 
 
