@@ -39,16 +39,19 @@ pvalues <- apply(gene_data, 1, function(row) {
   t.test(row[1:5], row[6:10])$p.value
 })
 pvalues
+
+padj <- p.adjust(pvalues, method = "BH")
+
 ```
 
 # Filtering out Significant Genes (padj <0.05 and fold change cutoff 2)
 ```{r}
 
-gene_data$pvalue <- pvalues
+gene_data$padj <- padj
 gene_data$log2FC <- log2_fold_change
 
-up_genes <- gene_data %>% filter(pvalue < 0.05, log2FC > 1)
-down_genes <- gene_data %>% filter(pvalue < 0.05, log2FC < -1)
+up_genes <- gene_data %>% filter(padj < 0.05, log2FC > 1)
+down_genes <- gene_data %>% filter(padj < 0.05, log2FC < -1)
 
 
 write.csv(gene_data, "background_genes.csv", row.names = FALSE)
@@ -62,10 +65,10 @@ filtered_pvalues_up
 filtered_log2fc_up
 
 # Subset for significant genes with p-value < 0.05 AND log2 fold change < -1
-significant_genes_down <- (pvalues < 0.05) & (log2_fold_change < -1)
+significant_genes_down <- (padj < 0.05) & (log2_fold_change < -1)
 
-# Subset p-values and log2 fold change that meet the criteria for significantly down-regulated genes.
-filtered_pvalues_down <- pvalues[significant_genes_down]
+# Subset padj and log2 fold change that meet the criteria for significantly down-regulated genes.
+filtered_pvalues_down <- padj[significant_genes_down]
 filtered_log2fc_down <- log2_fold_change[significant_genes_down]
 
 # Print the results
