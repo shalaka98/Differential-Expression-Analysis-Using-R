@@ -15,6 +15,7 @@ log_data_matrix <- log2(mat+1) #log transformation of matrix as data range is to
 head(log_data_matrix)
 ```
 
+# Preparation for Differential Expression Analysis
 
 # Calculate fold change
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
@@ -30,7 +31,8 @@ group2_mean <- rowMeans(group2)
 log2_fold_change = log2(group1_mean/group2_mean)
 log2_fold_change
 ```
-# Preparation for Differential Expression Analysis
+# Calculate the pvalues of fold changes
+
 ```{r}
 # Calculate the pvalues of fold changes
 pvalues <- apply(gene_data, 1, function(row) {
