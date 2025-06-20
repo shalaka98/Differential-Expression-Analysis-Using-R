@@ -13,23 +13,8 @@ mat <- as.matrix(gene_data)
 #log_data_matrix <- log2(mat+1) #log transformation of matrix as data range is too broad
 #head(log_data_matrix)
 ```
-# Heatmap using diverging color palette
-```{r, fig.width=10, fig.height=10}
-col_palette <- colorRampPalette(brewer.pal(11, "RdBu"))(100)
-heatmap.2(x=mat, col = col_palette, 
-          density.info = 'none', dendrogram = 'both',
-          scale = 'row', trace = 'none')
-```
-# Heatmap 
 
-# Clustering both Genes and Samples
-```{r,fig.width=10, fig.height=10}
-col_palette <- colorRampPalette(brewer.pal(11, "RdBu"))(100)
-heatmap.2(x=mat, col = col_palette, 
-          density.info = 'none', dendrogram = 'both',
-          scale = 'row', trace = 'none',
-          Romv = TRUE, Colv = TRUE)
-```
+
 # Calculate fold change
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
 # group samples using index positions: separate treatment and control data
@@ -102,6 +87,12 @@ Top 3 Enriched Pathways includes: Glutathione Derivative Metabolic process, Glut
 Dendrograms cluster genes/samples based on similarity.
 Colors indicate high/low expression.
 Creates a heatmap with row scaling.
+```{r, fig.width=10, fig.height=10}
+col_palette <- colorRampPalette(brewer.pal(11, "RdBu"))(100)
+heatmap.2(x=mat, col = col_palette, 
+          density.info = 'none', dendrogram = 'both',
+          scale = 'row', trace = 'none')
+```
 
 
 
