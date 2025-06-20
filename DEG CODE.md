@@ -40,7 +40,9 @@ pvalues
 
 # Filtering out Significant Genes (padj <0.05 and fold change cutoff 2)
 ```{r}
-new <- cbind(pvalues, log2_fold_change)
+
+gene_data$pvalue <- pvalues
+gene_data$log2FC <- log2_fold_change
 
 up_genes <- gene_data %>% filter(pvalue < 0.05, log2FC > 1)
 down_genes <- gene_data %>% filter(pvalue < 0.05, log2FC < -1)
