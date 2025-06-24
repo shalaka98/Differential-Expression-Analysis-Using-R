@@ -54,23 +54,11 @@ up_genes <- gene_data %>% filter(padj < 0.05, log2FC > 1)
 down_genes <- gene_data %>% filter(padj < 0.05, log2FC < -1)
 
 
-write.csv(gene_data, "background_genes.csv", row.names = FALSE)
-write.csv(up_genes, "DE_significantly_up_genes.csv", row.names = FALSE)
-write.csv(down_genes, "DE_significantly_down_genes.csv", row.names = FALSE)
+write.csv(gene_data, "background_genes.csv", row.names = TRUE)
+write.csv(up_genes, "DE_significantly_up_genes.csv", row.names = TRUE)
+write.csv(down_genes, "DE_significantly_down_genes.csv", row.names = TRUE)
 
 
-```
-# Exporting genes, fold change and adjacent p values to CSV file
-```{r}
-
-background_genes <- data.frame(gene = names(pvalues), log2FC = as.vector(log2_fold_change), pval = as.vector(pvalues))
-DE_significantly_up_genes <- data.frame(gene = names(filtered_pvalues_up), log2FC = as.vector(filtered_log2fc_up), pval = as.vector(filtered_pvalues_up))
-DE_significantly_down_genes <- data.frame(gene = names(filtered_pvalues_down), log2FC = as.vector(filtered_log2fc_down), pval = as.vector(filtered_pvalues_down))
-
-# Exporting into a CSV file
-write.csv(background_genes, "background_genes.csv", row.names = FALSE)
-write.csv(DE_significantly_up_genes, "DE_significantly_up_genes.csv", row.names = FALSE)
-write.csv(DE_significantly_down_genes, "DE_significantly_down_genes.csv", row.names = FALSE)
 ```
 
 ### Using the default parameters in [ShinyGO 0.80](http://bioinformatics.sdstate.edu/go/), for 10 significantly differential expressed genes, we found the following top 5 enriched biological pathways, visualizated using R
