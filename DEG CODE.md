@@ -59,17 +59,6 @@ write.csv(up_genes, "DE_significantly_up_genes.csv", row.names = FALSE)
 write.csv(down_genes, "DE_significantly_down_genes.csv", row.names = FALSE)
 
 
-
-# Subset for significant genes with p-value < 0.05 AND log2 fold change < -1
-significant_genes_down <- (padj < 0.05) & (log2_fold_change < -1)
-
-# Subset padj and log2 fold change that meet the criteria for significantly down-regulated genes.
-filtered_pvalues_down <- padj[significant_genes_down]
-filtered_log2fc_down <- log2_fold_change[significant_genes_down]
-
-# Print the results
-filtered_pvalues_down
-filtered_log2fc_down
 ```
 # Exporting genes, fold change and adjacent p values to CSV file
 ```{r}
